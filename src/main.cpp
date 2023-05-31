@@ -14,9 +14,40 @@ void setup() {
   Serial.println("Completed setup for LoRa reception!");
   delay(1000);
 
-  char* lora_IPR="AT+IPR=9600\r\n";
+  char* lora_IPR = "AT+IPR=9600\r\n";           // BAUD RATE
   char* lora_ADDRESS = "AT+ADDRESS=121\r\n";    // 0~65535(default 0)
   char* lora_NETWORKID = "AT+NETWORKID=6\r\n";  // 0~16(default 0)
+  
+  lora.write(lora_IPR);
+  delay(1000);
+  if (lora.available()) {
+    while (lora.available()) {
+      char c = lora.read();
+      Serial.print(c);
+    }
+    Serial.println();
+  }
+
+  lora.write(lora_ADDRESS);
+  delay(1000);
+  if (lora.available()) {
+    while (lora.available()) {
+      char c = lora.read();
+      Serial.print(c);
+    }
+    Serial.println();
+  }
+  
+  lora.write(lora_NETWORKID);
+  delay(1000);
+  if (lora.available()) {
+    while (lora.available()) {
+      char c = lora.read();
+      Serial.print(c);
+    }
+    Serial.println();
+  }
+
   
 }
 
